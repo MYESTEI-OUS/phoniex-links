@@ -1,189 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPL 2025 Live Match - Phoenix Live Link</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        header {
-            background-color: #0d6efd;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-        }
-        .container {
-            width: 90%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h2 {
-            color: #0d6efd;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .team {
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            padding: 15px;
-        }
-        .team h3 {
-            color: #0d6efd;
-            margin-bottom: 10px;
-        }
-        .team ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .team ul li {
-            margin-bottom: 8px;
-        }
-        footer {
-            background-color: #0d6efd;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-        .live-link-btn {
-            display: block;
-            width: 200px;
-            margin: 20px auto;
-            padding: 10px;
-            text-align: center;
-            background-color: #28a745;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .live-link-btn:hover {
-            background-color: #218838;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IPL 2025 Live Match - Phoenix Live Link</title>
 
-        /* Modal Styles */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1; 
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            overflow: auto;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
 
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 5px;
-            width: 80%;
-            max-width: 500px;
-        }
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7fa;
+      color: #333;
+    }
 
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    header {
+      background-color: #1c1f29;
+      color: #fff;
+      text-align: center;
+      padding: 50px 0 30px;
+    }
 
-        .close-btn:hover,
-        .close-btn:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+    header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      margin: 0;
+    }
 
-        .modal-links ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    header p {
+      font-size: 1.1rem;
+    }
 
-        .modal-links ul li {
-            margin-bottom: 10px;
-        }
+    .promo-banner {
+      background-color: #1c1f29;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 1.1rem;
+    }
 
-        .modal-links ul li a {
-            color: #0d6efd;
-            text-decoration: none;
-            font-size: 18px;
-        }
+    .ad-banner {
+      text-align: center;
+      padding: 20px;
+    }
 
-        .modal-links ul li a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    .ad-banner img {
+      max-width: 728px;
+      width: 90%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      color: #1c1f29;
+    }
+
+    .live-link-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background-color: #00b894;
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .live-link-btn:hover {
+      background-color: #098d6b;
+      transform: translateY(-2px);
+    }
+
+    .featured-player-photo {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .featured-player-photo img {
+      width: 50%;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .telegram-section {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .telegram-section h3 {
+      margin-bottom: 20px;
+    }
+
+    .telegram-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      background-color: #0088cc;
+      color: #fff;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .telegram-btn:hover {
+      background-color: #0077b3;
+    }
+
+    .telegram-logo {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    footer {
+      background-color: #1c1f29;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.95rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    .close-btn {
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #333;
+    }
+
+    .modal-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .modal-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .modal-links ul li a {
+      color: #1c1f29;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .modal-links ul li a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Phoenix Live Link - IPL 2025</h1>
-        <p>Your Gateway to the IPL 2025 Live Action</p>
-    </header>
+  <!-- Promo -->
+  <div class="promo-banner">
+    Catch the IPL 2025 Live Action! Click below to view live match links.
+  </div>
 
-    <div class="container">
-        <h2>IPL 2025 Teams and Players</h2>
+  <!-- Header -->
+  <header>
+    <h1>Phoenix Live Link - IPL 2025</h1>
+    <p>Your Gateway to the IPL 2025 Live Action</p>
+  </header>
 
-        <!-- Teams Content Here... (Add the previous team details here) -->
+  <!-- Ad Banner -->
+  <div class="ad-banner">
+    <img src="https://via.placeholder.com/728x90.png?text=Advertise+Here" alt="Ad Banner" />
+  </div>
 
-        <!-- Button to open Live Link Modal -->
-        <a href="javascript:void(0);" class="live-link-btn" onclick="openLiveLinkModal()">View Live Match Links</a>
+  <!-- Main Content -->
+  <div class="container">
+    <h2>IPL 2025 Teams and Players</h2>
+    <div style="text-align: center;">
+      <a href="javascript:void(0);" class="live-link-btn" onclick="openLiveLinkModal()">View Live Match Links</a>
     </div>
+  </div>
 
-    <!-- Modal for Live Links -->
-    <div id="liveLinkModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeLiveLinkModal()">&times;</span>
-            <h3>Live Match Links</h3>
-            <div class="modal-links">
-                <ul>
-                    <li><a href="https://alpha-binge.pages.dev/"_blank">WATCH HERE</a></li>
-                 
-                    <li><a href="https://www.cricbuzz.com/cricket-match/live-scores" target="_blank">Live Score Updates</a></li>
-                    <li><a href="https://example.com/scorecard" target="_blank">Full Scorecard</a></li>
-                    <!-- Add more links as needed -->
-                </ul>
-            </div>
-        </div>
+  <!-- Modal -->
+  <div id="liveLinkModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeLiveLinkModal()">&times;</span>
+      <h3>Live Match Links</h3>
+      <div class="modal-links">
+        <ul>
+          <li><a href="https://alpha-binge.pages.dev/" target="_blank">WATCH HERE</a></li>
+          <li><a href="https://www.cricbuzz.com/cricket-match/live-scores" target="_blank">Live Score Updates</a></li>
+          <li><a href="https://example.com/scorecard" target="_blank">Full Scorecard</a></li>
+        </ul>
+      </div>
     </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2025 IPL Phoenix Live Link | All Rights Reserved</p>
-    </footer>
+  <!-- Featured Image -->
+  <div class="featured-player-photo">
+    <img src="/mnt/data/399156.webp" alt="IPL Star Player" />
+  </div>
 
-    <script>
-        // Function to open the Live Link Modal
-        function openLiveLinkModal() {
-            document.getElementById("liveLinkModal").style.display = "block";
-        }
+  <!-- Telegram Channels -->
+  <div class="telegram-section">
+    <h3>Join Our Telegram Channels for Live IPL Updates!</h3>
 
-        // Function to close the Live Link Modal
-        function closeLiveLinkModal() {
-            document.getElementById("liveLinkModal").style.display = "none";
-        }
+    <!-- News Channel -->
+    <a href="https://t.me/cricketophile" target="_blank" class="telegram-btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon.svg" class="telegram-logo" alt="Telegram Logo">
+      News Channel
+    </a>
 
-        // Close the modal if the user clicks outside of it
-        window.onclick = function(event) {
-            var modal = document.getElementById("liveLinkModal");
-            if (event.target == modal) {
-                closeLiveLinkModal();
-            }
-        }
-    </script>
+    <!-- Live Match Link Channel -->
+    <a href="https://t.me/+KycGhcUvN004YzBl" target="_blank" class="telegram-btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon.svg" class="telegram-logo" alt="Telegram Logo">
+      Live Match Link Channel
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 IPL Phoenix Live Link | All Rights Reserved
+  </footer>
+
+  <!-- Modal Script -->
+  <script>
+    function openLiveLinkModal() {
+      document.getElementById("liveLinkModal").style.display = "block";
+    }
+
+    function closeLiveLinkModal() {
+      document.getElementById("liveLinkModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("liveLinkModal");
+      if (event.target === modal) {
+        closeLiveLinkModal();
+      }
+    }
+  </script>
 
 </body>
 </html>
