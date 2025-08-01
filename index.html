@@ -3,18 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>IPL 2025 Live Match - Phoenix Live Link</title>
-
-  <!-- Google Fonts -->
+  <title>Phoenix Live Link - Cricket Central</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
+    :root {
+      --bg-light: #f4f7fa;
+      --bg-dark: #121212;
+      --text-light: #ffffff;
+      --text-dark: #333333;
+      --accent: #00b894;
+    }
+
     body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f7fa;
-      color: #333;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
     }
 
     header {
@@ -30,8 +42,14 @@
       margin: 0;
     }
 
-    header p {
-      font-size: 1.1rem;
+    .toggle-btn {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
     }
 
     .promo-banner {
@@ -50,13 +68,12 @@
     .ad-banner img {
       max-width: 728px;
       width: 90%;
-      height: auto;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 30px auto;
       background-color: #fff;
       padding: 30px;
@@ -64,11 +81,30 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
-    .container h2 {
+    .container.dark-mode {
+      background-color: #1e1e1e;
+    }
+
+    h2 {
       text-align: center;
-      margin-bottom: 30px;
-      font-size: 2rem;
       color: #1c1f29;
+    }
+
+    .section {
+      margin-top: 40px;
+    }
+
+    .section img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .section h3 {
+      text-align: center;
+      margin-top: 10px;
     }
 
     .live-link-btn {
@@ -76,7 +112,7 @@
       padding: 15px 30px;
       font-size: 1.1rem;
       font-weight: 600;
-      background-color: #00b894;
+      background-color: var(--accent);
       color: white;
       border-radius: 50px;
       text-decoration: none;
@@ -88,47 +124,31 @@
       transform: translateY(-2px);
     }
 
-    .featured-player-photo {
-      text-align: center;
-      margin: 30px 0;
-    }
-
-    .featured-player-photo img {
-      width: 50%;
-      max-width: 500px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
     .telegram-section {
       text-align: center;
-      margin: 40px 0;
+      margin: 50px 0;
     }
 
-    .telegram-section h3 {
-      margin-bottom: 20px;
-    }
-
-    .telegram-btn {
+    .telegram-icon {
       display: inline-block;
-      padding: 15px 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
       margin: 10px;
-      background-color: #0088cc;
-      color: #fff;
-      font-size: 1rem;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
+      background: #0088cc;
+      line-height: 60px;
     }
 
-    .telegram-btn:hover {
-      background-color: #0077b3;
+    .telegram-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .telegram-logo {
-      width: 24px;
-      vertical-align: middle;
-      margin-right: 10px;
+    .live-scoreboard {
+      text-align: center;
+      margin-top: 30px;
     }
 
     footer {
@@ -138,70 +158,20 @@
       padding: 15px;
       font-size: 0.95rem;
     }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 500px;
-    }
-
-    .close-btn {
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      color: #aaa;
-      cursor: pointer;
-    }
-
-    .close-btn:hover {
-      color: #333;
-    }
-
-    .modal-links ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .modal-links ul li {
-      margin-bottom: 10px;
-    }
-
-    .modal-links ul li a {
-      color: #1c1f29;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
-
-    .modal-links ul li a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
 
   <!-- Promo -->
   <div class="promo-banner">
-    Catch the IPL 2025 Live Action! Click below to view live match links.
+    🏏 Catch All The Cricket Action: IPL, BBL, Asia Cup & Test Matches!
   </div>
 
   <!-- Header -->
   <header>
-    <h1>Phoenix Live Link - IPL 2025</h1>
-    <p>Your Gateway to the IPL 2025 Live Action</p>
+    <h1>Phoenix Live Link</h1>
+    <p>Cricket Central Hub - Live Scores, Match Links, Updates</p>
+    <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   </header>
 
   <!-- Ad Banner -->
@@ -211,71 +181,59 @@
 
   <!-- Main Content -->
   <div class="container">
-    <h2>IPL 2025 Teams and Players</h2>
-    <div style="text-align: center;">
-      <a href="javascript:void(0);" class="live-link-btn" onclick="openLiveLinkModal()">View Live Match Links</a>
+
+    <div class="live-scoreboard">
+      <iframe src="https://widget.crictimes.org/" width="100%" height="300" frameborder="0"></iframe>
+    </div>
+
+    <!-- Live Link Button -->
+    <div style="text-align:center; margin: 30px 0;">
+      <a href="https://alpha-binge.pages.dev/" target="_blank" class="live-link-btn">Watch Live Matches</a>
+    </div>
+
+    <!-- BBL Section -->
+    <div class="section">
+      <img src="/mnt/data/7f0fefc8-407a-4a55-9579-7c9c9c6bc3b4.png" alt="BBL">
+      <h3>Big Bash League (BBL) 2025</h3>
+      <p>Explore the exciting squads and strategies shaping this season's Big Bash League.</p>
+    </div>
+
+    <!-- Asia Cup Section -->
+    <div class="section">
+      <img src="/mnt/data/e403dfa0-e325-4b75-ad62-f45d57970543.png" alt="Asia Cup">
+      <h3>Asia Cup 2025</h3>
+      <p>Stay tuned to thrilling T20I battles as Asia's finest cricket teams clash in the Asia Cup.</p>
+    </div>
+
+    <!-- Test Match Section -->
+    <div class="section">
+      <img src="/mnt/data/00fbefb3-d683-4e93-b432-a02c7b391671.png" alt="Test Match">
+      <h3>Test Match Cricket</h3>
+      <p>The purest form of the game — track captains, stats, and top moments from Test cricket action.</p>
     </div>
   </div>
 
-  <!-- Modal -->
-  <div id="liveLinkModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeLiveLinkModal()">&times;</span>
-      <h3>Live Match Links</h3>
-      <div class="modal-links">
-        <ul>
-          <li><a href="https://alpha-binge.pages.dev/" target="_blank">WATCH HERE</a></li>
-          <li><a href="https://www.cricbuzz.com/cricket-match/live-scores" target="_blank">Live Score Updates</a></li>
-          <li><a href="https://example.com/scorecard" target="_blank">Full Scorecard</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Featured Image -->
-  <div class="featured-player-photo">
-    <img src="/mnt/data/399156.webp" alt="IPL Star Player" />
-  </div>
-
-  <!-- Telegram Channels -->
+  <!-- Telegram Join -->
   <div class="telegram-section">
-    <h3>Join Our Telegram Channels for Live IPL Updates!</h3>
-
-    <!-- News Channel -->
-    <a href="https://t.me/cricketophile" target="_blank" class="telegram-btn">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon.svg" class="telegram-logo" alt="Telegram Logo">
-      News Channel
-    </a>
-
-    <!-- Live Match Link Channel -->
-    <a href="https://t.me/+KycGhcUvN004YzBl" target="_blank" class="telegram-btn">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon.svg" class="telegram-logo" alt="Telegram Logo">
-      Live Match Link Channel
+    <h3>Join Us for Updates!</h3>
+    <a href="https://t.me/cricketophile" target="_blank" class="telegram-icon">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon.svg" alt="Telegram">
     </a>
   </div>
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 IPL Phoenix Live Link | All Rights Reserved
+    &copy; 2025 Phoenix Live Link | All Rights Reserved
   </footer>
 
-  <!-- Modal Script -->
+  <!-- Scripts -->
   <script>
-    function openLiveLinkModal() {
-      document.getElementById("liveLinkModal").style.display = "block";
-    }
-
-    function closeLiveLinkModal() {
-      document.getElementById("liveLinkModal").style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      const modal = document.getElementById("liveLinkModal");
-      if (event.target === modal) {
-        closeLiveLinkModal();
-      }
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      document.querySelector(".container").classList.toggle("dark-mode");
     }
   </script>
 
 </body>
 </html>
+
