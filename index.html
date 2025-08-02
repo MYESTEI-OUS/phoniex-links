@@ -151,6 +151,28 @@
       margin-top: 30px;
     }
 
+    .team-logos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 15px;
+      padding: 10px 0;
+      justify-items: center;
+      align-items: center;
+    }
+
+    .team-logos img {
+      width: 60px;
+      background: #fff;
+      padding: 5px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .team-logos img:hover {
+      transform: scale(1.1);
+    }
+
     footer {
       background-color: #1c1f29;
       color: #fff;
@@ -158,82 +180,142 @@
       padding: 15px;
       font-size: 0.95rem;
     }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .section img {
+        height: 200px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Promo -->
   <div class="promo-banner">
-    🏏 Catch All The Cricket Action: IPL, BBL, Asia Cup & Test Matches!
+    🏏 Catch All The Cricket Action: The Hundred, Asia Cup & Test Matches!
   </div>
 
-  <!-- Header -->
   <header>
     <h1>Phoenix Live Link</h1>
     <p>Cricket Central Hub - Live Scores, Match Links, Updates</p>
     <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   </header>
 
-  <!-- Ad Banner -->
   <div class="ad-banner">
     <img src="https://via.placeholder.com/728x90.png?text=Advertise+Here" alt="Ad Banner" />
   </div>
 
-  <!-- Main Content -->
   <div class="container">
 
     <div class="live-scoreboard">
       <iframe src="https://widget.crictimes.org/" width="100%" height="300" frameborder="0"></iframe>
     </div>
 
-    <!-- Live Link Button -->
     <div style="text-align:center; margin: 30px 0;">
       <a href="https://alpha-binge.pages.dev/" target="_blank" class="live-link-btn">Watch Live Matches</a>
     </div>
 
-    <!-- BBL Section -->
+    <!-- The Hundred Section -->
     <div class="section">
-      <img src="/mnt/data/7f0fefc8-407a-4a55-9579-7c9c9c6bc3b4.png" alt="BBL">
-      <h3>Big Bash League (BBL) 2025</h3>
-      <p>Explore the exciting squads and strategies shaping this season's Big Bash League.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/The_Hundred_logo.svg" alt="The Hundred">
+      <h3>The Hundred 2025</h3>
+      <p>Enjoy fast-paced cricket with The Hundred — bold teams, quickfire innings, thrilling finishes!</p>
+    </div>
+
+    <!-- The Hundred Logos -->
+    <div class="section">
+      <h2>💯 The Hundred Teams</h2>
+      <div class="team-logos">
+        <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Birmingham_Phoenix.png" title="Birmingham Phoenix" alt="Birmingham Phoenix">
+        <img src="https://upload.wikimedia.org/wikipedia/en/f/f2/Northern_Superchargers.png" title="Northern Superchargers" alt="Northern Superchargers">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/09/London_Spirit.png" title="London Spirit" alt="London Spirit">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Manchester_Originals.png" title="Manchester Originals" alt="Manchester Originals">
+        <img src="https://upload.wikimedia.org/wikipedia/en/5/57/Oval_Invincibles.png" title="Oval Invincibles" alt="Oval Invincibles">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a0/Southern_Brave.png" title="Southern Brave" alt="Southern Brave">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/b0/Trent_Rockets.png" title="Trent Rockets" alt="Trent Rockets">
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Welsh_Fire.png" title="Welsh Fire" alt="Welsh Fire">
+      </div>
     </div>
 
     <!-- Asia Cup Section -->
     <div class="section">
-      <img src="/mnt/data/e403dfa0-e325-4b75-ad62-f45d57970543.png" alt="Asia Cup">
+      <img src="https://upload.wikimedia.org/wikipedia/en/f/fb/ACC_Asia_Cup_Logo.png" alt="Asia Cup">
       <h3>Asia Cup 2025</h3>
       <p>Stay tuned to thrilling T20I battles as Asia's finest cricket teams clash in the Asia Cup.</p>
     </div>
 
     <!-- Test Match Section -->
     <div class="section">
-      <img src="/mnt/data/00fbefb3-d683-4e93-b432-a02c7b391671.png" alt="Test Match">
+      <img src="https://upload.wikimedia.org/wikipedia/en/3/3c/Test_cricket_logo.png" alt="Test Match">
       <h3>Test Match Cricket</h3>
       <p>The purest form of the game — track captains, stats, and top moments from Test cricket action.</p>
     </div>
+
+    <!-- News Feed -->
+    <div class="section">
+      <h2>📰 Latest Cricket News</h2>
+      <rssapp-feed id="t25WLLKsHWc9iwAY"></rssapp-feed>
+      <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+    </div>
+
+    <!-- Country Logos -->
+    <div class="section">
+      <h2>🏏 International Teams</h2>
+      <div class="team-logos">
+        <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" title="India" alt="India">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg" title="Pakistan" alt="Pakistan">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg" title="Australia" alt="Australia">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg" title="England" alt="England">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg" title="New Zealand" alt="New Zealand">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg" title="South Africa" alt="South Africa">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg" title="Bangladesh" alt="Bangladesh">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg" title="Sri Lanka" alt="Sri Lanka">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_the_West_Indies_Cricket_Team.svg" title="West Indies" alt="West Indies">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Afghanistan.svg" title="Afghanistan" alt="Afghanistan">
+      </div>
+    </div>
+
+    <!-- Telegram -->
+    <div class="telegram-section">
+      <h3>Join Us for Updates!</h3>
+      <a href="https://t.me/cricketophile" target="_blank" class="telegram-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon.svg" alt="Telegram">
+      </a>
+    </div>
   </div>
 
-  <!-- Telegram Join -->
-  <div class="telegram-section">
-    <h3>Join Us for Updates!</h3>
-    <a href="https://t.me/cricketophile" target="_blank" class="telegram-icon">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon.svg" alt="Telegram">
-    </a>
-  </div>
-
-  <!-- Footer -->
   <footer>
     &copy; 2025 Phoenix Live Link | All Rights Reserved
   </footer>
 
-  <!-- Scripts -->
+  <!-- Dark Mode -->
   <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark-mode");
+      document.querySelector(".container").classList.add("dark-mode");
+    }
+
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
       document.querySelector(".container").classList.toggle("dark-mode");
+      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
     }
+  </script>
+
+  <!-- Live Chat -->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/65bd45a98d261e1b5f643dbb/1hm98eqk8';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
   </script>
 
 </body>
 </html>
-
