@@ -2,309 +2,615 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Phoenix Live Link - Cricket Central</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Phoenix Live Link – your cricket central hub for live scores, match links, countdowns, news, polls and updates." />
+  <meta property="og:title" content="Phoenix Live Link - Cricket Central" />
+  <meta property="og:description" content="Live scores, match links, countdowns, news, polls and updates." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#00b894" />
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
     :root {
       --bg-light: #f4f7fa;
-      --bg-dark: #121212;
-      --text-light: #ffffff;
-      --text-dark: #333333;
+      --bg-dark: #0e0f13;
+      --card-light: #ffffff;
+      --card-dark: #151823;
+      --text-light: #f8fafc;
+      --text-dark: #1f2937;
+      --muted: #6b7280;
       --accent: #00b894;
+      --accent-2: #34d399;
+      --header: #11131a;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --shadow-strong: 0 20px 50px rgba(0,0,0,.18);
+      --radius: 16px;
     }
 
-    body {
-      font-family: 'Roboto', sans-serif;
+    * { box-sizing: border-box; }
+
+    html, body {
       margin: 0;
       padding: 0;
-      background-color: var(--bg-light);
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg-light);
       color: var(--text-dark);
-      transition: background 0.3s, color 0.3s;
+      scroll-behavior: smooth;
     }
 
-    .dark-mode {
-      background-color: var(--bg-dark);
-      color: var(--text-light);
+    /* Auto dark mode based on system preference, overridable by toggle */
+    @media (prefers-color-scheme: dark) {
+      body:not(.force-light) {
+        background: var(--bg-dark);
+        color: var(--text-light);
+      }
     }
 
-    header {
-      background-color: #1c1f29;
-      color: #fff;
-      text-align: center;
-      padding: 50px 0 30px;
-    }
-
-    header h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
-      margin: 0;
-    }
-
-    .toggle-btn {
-      margin-top: 15px;
-      padding: 8px 16px;
-      background-color: #444;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-
-    .promo-banner {
-      background-color: #1c1f29;
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      font-size: 1.1rem;
-    }
-
-    .ad-banner {
-      text-align: center;
-      padding: 20px;
-    }
-
-    .ad-banner img {
-      max-width: 728px;
-      width: 90%;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+    .dark-mode, body.force-dark { background: var(--bg-dark); color: var(--text-light); }
 
     .container {
-      max-width: 900px;
-      margin: 30px auto;
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      max-width: 1100px;
+      margin: 100px auto 40px;
+      padding: 0 16px;
     }
 
-    .container.dark-mode {
-      background-color: #1e1e1e;
+    /* Sticky Header */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: linear-gradient(180deg, var(--header) 0%, #141726 100%);
+      color: #fff;
+      box-shadow: var(--shadow);
+      backdrop-filter: saturate(150%) blur(8px);
     }
-
-    h2 {
-      text-align: center;
-      color: #1c1f29;
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
-
-    .section {
-      margin-top: 40px;
+    .brand {
+      display: flex; align-items: center; gap: 12px;
     }
-
-    .section img {
-      width: 100%;
-      max-height: 250px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 15px;
+    .brand h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: .3px;
+      margin: 0;
     }
+    .brand small { color: #cbd5e1; display:block; margin-top: 2px; font-size:.8rem }
+    .spacer { flex: 1; }
 
-    .section h3 {
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .live-link-btn {
-      display: inline-block;
-      padding: 15px 30px;
-      font-size: 1.1rem;
+    .toggle-btn, .primary-btn {
+      border: none; cursor: pointer;
+      padding: 10px 16px;
+      border-radius: 999px;
       font-weight: 600;
-      background-color: var(--accent);
-      color: white;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: all 0.3s ease;
+      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+    .toggle-btn {
+      background: #2a2f44; color: #fff;
+    }
+    .toggle-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+
+    /* Gradient CTA */
+    .primary-btn {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: white; text-decoration: none; display:inline-flex; align-items:center; gap:10px;
+      box-shadow: 0 10px 25px rgba(0, 184, 148, .35);
+    }
+    .primary-btn:hover { transform: translateY(-2px) scale(1.01); box-shadow: var(--shadow-strong); }
+
+    /* Promo bar */
+    .promo-banner {
+      text-align: center; color: #e2e8f0;
+      font-size: .95rem; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
     }
 
-    .live-link-btn:hover {
-      background-color: #098d6b;
-      transform: translateY(-2px);
+    /* Card */
+    .card {
+      background: var(--card-light);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      transition: transform .2s ease, box-shadow .2s ease, background .3s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-strong); }
+    body.dark-mode .card, body.force-dark .card, @media (prefers-color-scheme: dark) {
+      .card { background: var(--card-dark); }
     }
 
-    .telegram-section {
-      text-align: center;
-      margin: 50px 0;
+    h2.section-title {
+      font-family: 'Poppins', sans-serif;
+      margin: 0 0 14px;
+      font-size: 1.4rem;
     }
+    p.muted { color: var(--muted); margin-top: 6px; }
 
-    .telegram-icon {
-      display: inline-block;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+    .hero {
+      display:grid; gap: 20px; align-items: center;
+      grid-template-columns: 1.2fr .8fr;
+    }
+    @media (max-width: 880px){ .hero { grid-template-columns: 1fr; } }
+
+    .hero-poster {
+      border-radius: var(--radius);
       overflow: hidden;
-      margin: 10px;
-      background: #0088cc;
-      line-height: 60px;
+      aspect-ratio: 16/9;
+      box-shadow: var(--shadow);
+    }
+    .hero-poster img { width:100%; height:100%; object-fit: cover; display:block; }
+
+    /* Section images */
+    .section-img {
+      width: 100%; height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 10px;
     }
 
-    .telegram-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .live-scoreboard {
-      text-align: center;
-      margin-top: 30px;
-    }
-
+    /* Team logos grid */
     .team-logos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      gap: 15px;
-      padding: 10px 0;
-      justify-items: center;
-      align-items: center;
+      gap: 16px; justify-items: center; align-items: center;
     }
-
     .team-logos img {
-      width: 60px;
-      background: #fff;
-      padding: 5px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease;
+      width: 64px; background: #fff; padding: 6px;
+      border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,.08);
+      transition: transform .2s ease, filter .2s ease;
+    }
+    .team-logos img:hover { transform: scale(1.08); filter: saturate(120%); }
+    body.dark-mode .team-logos img, body.force-dark .team-logos img { background: #0f1220; }
+
+    /* Live Scoreboard + Ticker */
+    .scoreboard iframe { border: 0; border-radius: 12px; box-shadow: var(--shadow); }
+    .ticker {
+      overflow: hidden; white-space: nowrap; border-radius: 999px; padding: 10px 12px; margin-top: 12px;
+      background: linear-gradient(90deg, rgba(0,184,148,.15), rgba(52,211,153,.15));
+    }
+    .ticker .track {
+      display: inline-block;
+      animation: scroll 28s linear infinite;
+      padding-right: 50vw;
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
 
-    .team-logos img:hover {
-      transform: scale(1.1);
+    /* Telegram icon */
+    .telegram-icon {
+      display:inline-flex; width:60px; height:60px; border-radius: 50%;
+      overflow:hidden; background: #0088cc; align-items:center; justify-content:center;
+      box-shadow: var(--shadow); transition: transform .2s ease;
     }
+    .telegram-icon:hover { transform: translateY(-2px) scale(1.03); }
 
+    /* Inputs / small UI */
+    .row { display:flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .row input, .row select {
+      padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 10px; background: transparent; color: inherit;
+    }
+    body.dark-mode .row input, body.force-dark .row input { border-color: #334155; }
+
+    /* Footer */
     footer {
-      background-color: #1c1f29;
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      font-size: 0.95rem;
+      background: #11131a; color:#cbd5e1; text-align:center; padding: 24px 12px; font-size:.95rem;
+      margin-top: 40px;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      .section img {
-        height: 200px;
-      }
-    }
+    /* Small helpers */
+    .fade-in { animation: fade 0.6s ease both; }
+    @keyframes fade { from { opacity: 0; transform: translateY(6px);} to { opacity:1; transform: translateY(0);} }
+    .center { text-align: center; }
+    .mt-10 { margin-top: 10px; }
+    .mt-20 { margin-top: 20px; }
   </style>
 </head>
 <body>
 
-  <div class="promo-banner">
-    🏏 Catch All The Cricket Action: The Hundred, Asia Cup & Test Matches!
-  </div>
-
   <header>
-    <h1>Phoenix Live Link</h1>
-    <p>Cricket Central Hub - Live Scores, Match Links, Updates</p>
-    <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <div class="header-inner">
+      <div class="brand">
+        <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/The_Hundred_logo.svg" alt="Logo" width="34" height="34" loading="lazy" />
+        <div>
+          <h1>Phoenix Live Link</h1>
+          <small>Cricket Central Hub</small>
+        </div>
+      </div>
+      <div class="spacer"></div>
+
+      <a href="https://alpha-binge.pages.dev/" target="_blank" class="primary-btn" aria-label="Watch live matches">
+        🟢 Watch Live Matches
+      </a>
+      <button class="toggle-btn" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+    </div>
+    <div class="promo-banner">
+      🏏 Catch All The Cricket Action: The Hundred, Asia Cup & Test Matches!
+    </div>
   </header>
 
-  <div class="ad-banner">
-    <img src="https://via.placeholder.com/728x90.png?text=Advertise+Here" alt="Ad Banner" />
-  </div>
+  <main class="container">
+    <!-- HERO -->
+    <section class="card hero fade-in">
+      <div>
+        <h2 class="section-title">Live Scores, Links & Updates</h2>
+        <p class="muted">Everything cricket in one place — live scoreboard, match countdown, score ticker, news and more.</p>
 
-  <div class="container">
-
-    <div class="live-scoreboard">
-      <iframe src="https://widget.crictimes.org/" width="100%" height="300" frameborder="0"></iframe>
-    </div>
-
-    <div style="text-align:center; margin: 30px 0;">
-      <a href="https://alpha-binge.pages.dev/" target="_blank" class="live-link-btn">Watch Live Matches</a>
-    </div>
-
-    <!-- The Hundred Section -->
-    <div class="section">
-      <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/The_Hundred_logo.svg" alt="The Hundred">
-      <h3>The Hundred 2025</h3>
-      <p>Enjoy fast-paced cricket with The Hundred — bold teams, quickfire innings, thrilling finishes!</p>
-    </div>
-
-    <!-- The Hundred Logos -->
-    <div class="section">
-      <h2>💯 The Hundred Teams</h2>
-      <div class="team-logos">
-        <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Birmingham_Phoenix.png" title="Birmingham Phoenix" alt="Birmingham Phoenix">
-        <img src="https://upload.wikimedia.org/wikipedia/en/f/f2/Northern_Superchargers.png" title="Northern Superchargers" alt="Northern Superchargers">
-        <img src="https://upload.wikimedia.org/wikipedia/en/0/09/London_Spirit.png" title="London Spirit" alt="London Spirit">
-        <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Manchester_Originals.png" title="Manchester Originals" alt="Manchester Originals">
-        <img src="https://upload.wikimedia.org/wikipedia/en/5/57/Oval_Invincibles.png" title="Oval Invincibles" alt="Oval Invincibles">
-        <img src="https://upload.wikimedia.org/wikipedia/en/a/a0/Southern_Brave.png" title="Southern Brave" alt="Southern Brave">
-        <img src="https://upload.wikimedia.org/wikipedia/en/b/b0/Trent_Rockets.png" title="Trent Rockets" alt="Trent Rockets">
-        <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Welsh_Fire.png" title="Welsh Fire" alt="Welsh Fire">
+        <!-- Countdown + Calendar -->
+        <div class="card mt-20">
+          <h3 style="margin:0 0 10px">⏳ Next Match Countdown</h3>
+          <div class="row">
+            <input type="text" id="matchTitle" placeholder="Match title (e.g., IND vs PAK – Asia Cup)" style="flex:1; min-width:240px">
+            <input type="datetime-local" id="matchDateTime" style="min-width:220px">
+            <button class="primary-btn" id="saveMatchBtn">Save</button>
+            <a id="gcalBtn" class="toggle-btn" target="_blank" rel="noopener">Add to Google Calendar</a>
+          </div>
+          <div id="countdown" class="center mt-10" style="font-size:1.2rem; font-weight:600;"></div>
+        </div>
       </div>
-    </div>
 
-    <!-- Asia Cup Section -->
-    <div class="section">
-      <img src="https://upload.wikimedia.org/wikipedia/en/f/fb/ACC_Asia_Cup_Logo.png" alt="Asia Cup">
-      <h3>Asia Cup 2025</h3>
-      <p>Stay tuned to thrilling T20I battles as Asia's finest cricket teams clash in the Asia Cup.</p>
-    </div>
-
-    <!-- Test Match Section -->
-    <div class="section">
-      <img src="https://upload.wikimedia.org/wikipedia/en/3/3c/Test_cricket_logo.png" alt="Test Match">
-      <h3>Test Match Cricket</h3>
-      <p>The purest form of the game — track captains, stats, and top moments from Test cricket action.</p>
-    </div>
-
-    <!-- News Feed -->
-    <div class="section">
-      <h2>📰 Latest Cricket News</h2>
-      <rssapp-feed id="t25WLLKsHWc9iwAY"></rssapp-feed>
-      <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
-    </div>
-
-    <!-- Country Logos -->
-    <div class="section">
-      <h2>🏏 International Teams</h2>
-      <div class="team-logos">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" title="India" alt="India">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg" title="Pakistan" alt="Pakistan">
-        <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg" title="Australia" alt="Australia">
-        <img src="https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg" title="England" alt="England">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg" title="New Zealand" alt="New Zealand">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg" title="South Africa" alt="South Africa">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg" title="Bangladesh" alt="Bangladesh">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg" title="Sri Lanka" alt="Sri Lanka">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_the_West_Indies_Cricket_Team.svg" title="West Indies" alt="West Indies">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Afghanistan.svg" title="Afghanistan" alt="Afghanistan">
+      <div class="hero-poster">
+        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1600&auto=format&fit=crop" alt="Cricket stadium" loading="lazy">
       </div>
-    </div>
+    </section>
 
-    <!-- Telegram -->
-    <div class="telegram-section">
+    <!-- AD -->
+    <section class="mt-20">
+      <div class="card center">
+        <img src="https://via.placeholder.com/970x90.png?text=Advertise+Here" alt="Ad Banner" style="max-width:100%; border-radius:12px" loading="lazy"/>
+      </div>
+    </section>
+
+    <!-- SCOREBOARD + TICKER -->
+    <section class="grid grid-2 mt-20">
+      <div class="card scoreboard">
+        <h2 class="section-title">Live Scoreboard</h2>
+        <iframe src="https://widget.crictimes.org/" width="100%" height="320" loading="lazy"></iframe>
+
+        <div class="ticker mt-10" title="Scrolls automatically">
+          <div class="track" id="tickerTrack">
+            <!-- Ticker items duplicated in JS for infinite scroll -->
+          </div>
+        </div>
+        <div class="row mt-10">
+          <input id="tickerInput" placeholder="Add a score update (e.g., IND 178/4 in 17.3)" style="flex:1; min-width:240px">
+          <button class="toggle-btn" id="addTickerBtn">Add</button>
+          <button class="toggle-btn" id="clearTickerBtn">Clear</button>
+        </div>
+      </div>
+
+      <!-- POLL -->
+      <div class="card">
+        <h2 class="section-title">🗳️ Fan Poll</h2>
+        <p class="muted" id="pollQuestion">Who will win today’s match?</p>
+        <div id="pollOptions" class="grid grid-2"></div>
+        <div class="center mt-10">
+          <button class="toggle-btn" id="resetPollBtn">Reset Poll</button>
+        </div>
+        <p class="muted mt-10 center">Votes are saved on your device (no login needed).</p>
+      </div>
+    </section>
+
+    <!-- TOURNAMENTS -->
+    <section class="grid grid-3 mt-20">
+      <div class="card fade-in">
+        <img class="section-img" src="https://upload.wikimedia.org/wikipedia/en/f/fd/The_Hundred_logo.svg" alt="The Hundred" loading="lazy">
+        <h3 class="center">The Hundred 2025</h3>
+        <p class="muted center">Fast-paced cricket — bold teams, quickfire innings, thrilling finishes!</p>
+      </div>
+
+      <div class="card fade-in" style="animation-delay:.05s">
+        <img class="section-img" src="https://upload.wikimedia.org/wikipedia/en/f/fb/ACC_Asia_Cup_Logo.png" alt="Asia Cup" loading="lazy">
+        <h3 class="center">Asia Cup 2025</h3>
+        <p class="muted center">T20I clashes featuring Asia's finest teams. Don’t miss the heat!</p>
+      </div>
+
+      <div class="card fade-in" style="animation-delay:.1s">
+        <img class="section-img" src="https://upload.wikimedia.org/wikipedia/en/3/3c/Test_cricket_logo.png" alt="Test Cricket" loading="lazy">
+        <h3 class="center">Test Match Cricket</h3>
+        <p class="muted center">The purest format — strategy, grit and epic contests across five days.</p>
+      </div>
+    </section>
+
+    <!-- HUNDRED TEAM LOGOS -->
+    <section class="card mt-20">
+      <h2 class="section-title">💯 The Hundred Teams</h2>
+      <div class="team-logos">
+        <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Birmingham_Phoenix.png" title="Birmingham Phoenix" alt="Birmingham Phoenix" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/en/f/f2/Northern_Superchargers.png" title="Northern Superchargers" alt="Northern Superchargers" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/09/London_Spirit.png" title="London Spirit" alt="London Spirit" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Manchester_Originals.png" title="Manchester Originals" alt="Manchester Originals" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/en/5/57/Oval_Invincibles.png" title="Oval Invincibles" alt="Oval Invincibles" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a0/Southern_Brave.png" title="Southern Brave" alt="Southern Brave" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/b0/Trent_Rockets.png" title="Trent Rockets" alt="Trent Rockets" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Welsh_Fire.png" title="Welsh Fire" alt="Welsh Fire" loading="lazy">
+      </div>
+    </section>
+
+    <!-- NEWS (FREE + SEARCHABLE) -->
+    <section class="card mt-20">
+      <h2 class="section-title">📰 Latest Cricket News</h2>
+      <div class="row">
+        <input id="rssUrl" placeholder="RSS feed URL (e.g., https://www.espncricinfo.com/rss/content/story/feeds/0.xml)" style="flex:1; min-width:260px">
+        <button class="toggle-btn" id="loadRssBtn">Load News</button>
+        <input id="newsSearch" placeholder="Search news..." style="flex:1; min-width:200px">
+      </div>
+      <div id="newsList" class="grid mt-20"></div>
+      <p class="muted mt-10">Tip: paste any cricket RSS URL and click “Load News”. You can search instantly.</p>
+    </section>
+
+    <!-- INTERNATIONAL TEAMS (flags kept for now; can swap to logos later) -->
+    <section class="card mt-20">
+      <h2 class="section-title">🏏 International Teams</h2>
+      <div class="team-logos">
+        <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" title="India" alt="India" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg" title="Pakistan" alt="Pakistan" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg" title="Australia" alt="Australia" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg" title="England" alt="England" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg" title="New Zealand" alt="New Zealand" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg" title="South Africa" alt="South Africa" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg" title="Bangladesh" alt="Bangladesh" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg" title="Sri Lanka" alt="Sri Lanka" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_the_West_Indies_Cricket_Team.svg" title="West Indies" alt="West Indies" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Afghanistan.svg" title="Afghanistan" alt="Afghanistan" loading="lazy">
+      </div>
+    </section>
+
+    <!-- TELEGRAM -->
+    <section class="card center mt-20">
       <h3>Join Us for Updates!</h3>
-      <a href="https://t.me/cricketophile" target="_blank" class="telegram-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon.svg" alt="Telegram">
+      <a href="https://t.me/cricketophile" target="_blank" class="telegram-icon" aria-label="Telegram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon.svg" alt="Telegram" width="36" height="36" loading="lazy">
       </a>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <footer>
     &copy; 2025 Phoenix Live Link | All Rights Reserved
   </footer>
 
-  <!-- Dark Mode -->
+  <!-- THEME + PREFERENCES -->
   <script>
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark-mode");
-      document.querySelector(".container").classList.add("dark-mode");
-    }
+    (function themeInit(){
+      const stored = localStorage.getItem('theme'); // 'dark' | 'light' | null
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored === 'dark' || (!stored && prefersDark)) {
+        document.body.classList.add('dark-mode'); document.body.classList.remove('force-light');
+      } else {
+        document.body.classList.remove('dark-mode'); document.body.classList.add('force-light');
+      }
+    })();
 
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-      document.querySelector(".container").classList.toggle("dark-mode");
-      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-    }
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      document.body.classList.toggle('force-light', !isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
   </script>
 
-  <!-- Live Chat -->
+  <!-- COUNTDOWN + GOOGLE CAL -->
+  <script>
+    const titleEl = document.getElementById('matchTitle');
+    const dtEl = document.getElementById('matchDateTime');
+    const countdownEl = document.getElementById('countdown');
+    const gcalBtn = document.getElementById('gcalBtn');
+
+    // Load saved values
+    const saved = JSON.parse(localStorage.getItem('nextMatch') || '{}');
+    if (saved.title) titleEl.value = saved.title;
+    if (saved.datetime) dtEl.value = saved.datetime;
+
+    function updateGCalLink(){
+      const t = titleEl.value || 'Cricket Match';
+      const dt = dtEl.value ? new Date(dtEl.value) : null;
+      if (!dt) { gcalBtn.removeAttribute('href'); return; }
+      const start = dt.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z/,'Z');
+      const end = new Date(dt.getTime() + 2*60*60*1000).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z/,'Z'); // +2h default
+      const url = new URL('https://calendar.google.com/calendar/render');
+      url.searchParams.set('action', 'TEMPLATE');
+      url.searchParams.set('text', t);
+      url.searchParams.set('dates', `${start}/${end}`);
+      url.searchParams.set('details', 'Added from Phoenix Live Link');
+      gcalBtn.href = url.toString();
+    }
+
+    function renderCountdown(){
+      const dtVal = dtEl.value;
+      if (!dtVal) { countdownEl.textContent = 'Set match date & time to start countdown.'; return; }
+      const now = new Date();
+      const target = new Date(dtVal);
+      const diff = target - now;
+      if (diff <= 0) { countdownEl.textContent = 'Live now or finished!'; return; }
+      const d = Math.floor(diff/86400000);
+      const h = Math.floor((diff%86400000)/3600000);
+      const m = Math.floor((diff%3600000)/60000);
+      const s = Math.floor((diff%60000)/1000);
+      countdownEl.textContent = `Starts in ${d}d ${h}h ${m}m ${s}s`;
+    }
+
+    document.getElementById('saveMatchBtn').addEventListener('click', () => {
+      const data = { title: titleEl.value, datetime: dtEl.value };
+      localStorage.setItem('nextMatch', JSON.stringify(data));
+      updateGCalLink();
+      renderCountdown();
+    });
+
+    updateGCalLink();
+    renderCountdown();
+    setInterval(renderCountdown, 1000);
+  </script>
+
+  <!-- TICKER -->
+  <script>
+    const tickerTrack = document.getElementById('tickerTrack');
+    const tickerInput = document.getElementById('tickerInput');
+    const addTickerBtn = document.getElementById('addTickerBtn');
+    const clearTickerBtn = document.getElementById('clearTickerBtn');
+
+    function getTickerItems(){
+      return JSON.parse(localStorage.getItem('tickerItems') || '[]');
+    }
+    function setTickerItems(items){
+      localStorage.setItem('tickerItems', JSON.stringify(items));
+    }
+    function renderTicker(){
+      const items = getTickerItems();
+      if (items.length === 0) {
+        tickerTrack.innerHTML = `<span style="padding-right:40px">Welcome to Phoenix Live Link</span>
+          <span style="padding-right:40px">Live scores updating…</span>
+          <span style="padding-right:40px">Set your next match countdown above</span>`;
+        return;
+      }
+      const line = items.map(t => `<span style="padding-right:40px">${t}</span>`).join('');
+      // duplicate to allow seamless loop
+      tickerTrack.innerHTML = line + line;
+    }
+
+    addTickerBtn.addEventListener('click', () => {
+      const val = tickerInput.value.trim();
+      if (!val) return;
+      const items = getTickerItems(); items.push(val); setTickerItems(items);
+      tickerInput.value = ''; renderTicker();
+    });
+    clearTickerBtn.addEventListener('click', () => { setTickerItems([]); renderTicker(); });
+
+    renderTicker();
+  </script>
+
+  <!-- POLL / VOTING (localStorage) -->
+  <script>
+    const pollQuestion = document.getElementById('pollQuestion');
+    const pollOptionsEl = document.getElementById('pollOptions');
+    const resetPollBtn = document.getElementById('resetPollBtn');
+
+    // Configure poll here:
+    const POLL_ID = 'poll_today_match_v1';
+    const POLL = {
+      question: 'Who will win today’s match?',
+      options: ['Team A', 'Team B', 'Tie/No Result']
+    };
+
+    function loadPoll(){
+      pollQuestion.textContent = POLL.question;
+      pollOptionsEl.innerHTML = '';
+      const saved = JSON.parse(localStorage.getItem(POLL_ID) || '{}'); // { votes: {option: count}, myVote: 'Team A' }
+      const votes = saved.votes || {};
+      for (const opt of POLL.options) {
+        const count = votes[opt] || 0;
+        const btn = document.createElement('button');
+        btn.className = 'primary-btn';
+        btn.style.width = '100%';
+        btn.textContent = `${opt} — ${count} vote${count!==1?'s':''}`;
+        if (saved.myVote === opt) btn.style.opacity = .85;
+        btn.addEventListener('click', () => {
+          const data = JSON.parse(localStorage.getItem(POLL_ID) || '{"votes":{}}');
+          data.votes = data.votes || {};
+          data.votes[opt] = (data.votes[opt] || 0) + 1;
+          data.myVote = opt;
+          localStorage.setItem(POLL_ID, JSON.stringify(data));
+          loadPoll();
+        });
+        pollOptionsEl.appendChild(btn);
+      }
+    }
+
+    resetPollBtn.addEventListener('click', () => {
+      localStorage.removeItem(POLL_ID);
+      loadPoll();
+    });
+
+    loadPoll();
+  </script>
+
+  <!-- RSS NEWS (FREE via rss2json.com) -->
+  <script>
+    const rssUrlInput = document.getElementById('rssUrl');
+    const loadRssBtn = document.getElementById('loadRssBtn');
+    const newsList = document.getElementById('newsList');
+    const newsSearch = document.getElementById('newsSearch');
+
+    // Default feed (you can change this)
+    const DEFAULT_FEED = 'https://www.espncricinfo.com/rss/content/story/feeds/0.xml';
+
+    function saveRssUrl(url){ localStorage.setItem('rssUrl', url); }
+    function getRssUrl(){ return localStorage.getItem('rssUrl') || DEFAULT_FEED; }
+
+    async function fetchRSS(url){
+      // Using rss2json free endpoint. Note: public service has rate limits.
+      const api = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(url);
+      const res = await fetch(api);
+      if (!res.ok) throw new Error('Failed to load RSS');
+      return res.json();
+    }
+
+    function card(item){
+      const pub = new Date(item.pubDate || item.published || Date.now());
+      const time = pub.toLocaleString();
+      return `
+        <article class="card fade-in" style="animation-delay:.03s">
+          <h3 style="margin:0 0 8px; font-family:Poppins, sans-serif; font-size:1.05rem">
+            <a href="${item.link}" target="_blank" rel="noopener" style="text-decoration:none">${item.title}</a>
+          </h3>
+          <p class="muted" style="margin:0 0 8px">${time}</p>
+          <p style="margin:0">${(item.description || '').replace(/<[^>]+>/g,'').slice(0,180)}...</p>
+        </article>
+      `;
+    }
+
+    let newsCache = [];
+
+    async function loadNews(){
+      const url = rssUrlInput.value.trim() || getRssUrl();
+      saveRssUrl(url);
+      rssUrlInput.value = url;
+      newsList.innerHTML = '<div class="center muted">Loading news...</div>';
+      try {
+        const data = await fetchRSS(url);
+        newsCache = (data.items || []);
+        renderNews();
+      } catch (e) {
+        newsList.innerHTML = '<div class="center" style="color:#ef4444">Could not load RSS. Try another feed URL.</div>';
+        console.error(e);
+      }
+    }
+
+    function renderNews(){
+      const q = newsSearch.value.toLowerCase().trim();
+      const items = q ? newsCache.filter(it =>
+        (it.title||'').toLowerCase().includes(q) ||
+        (it.description||'').toLowerCase().includes(q)
+      ) : newsCache;
+      newsList.innerHTML = items.slice(0, 24).map(card).join('') || '<div class="center muted">No news found.</div>';
+    }
+
+    loadRssBtn.addEventListener('click', loadNews);
+    newsSearch.addEventListener('input', renderNews);
+
+    // init
+    rssUrlInput.value = getRssUrl();
+    loadNews();
+  </script>
+
+  <!-- Live Chat (Tawk) -->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function () {
@@ -317,5 +623,15 @@
     })();
   </script>
 
+  <!-- Optional: Google Analytics (replace G-XXXXXXX) -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+  </script>
+  -->
 </body>
 </html>
