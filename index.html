@@ -1,352 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <title>Phoenix Live Link - Cricket Central</title>
-
-  <!-- SEO -->
-  <meta name="description" content="Phoenix Live Link – your cricket central hub for live scores, match links, countdowns, news, polls and updates." />
-  <meta property="og:title" content="Phoenix Live Link - Cricket Central" />
-  <meta property="og:description" content="Live scores, match links, countdowns, news, polls and updates." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#00b894" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --bg-light: #f4f7fa;
-      --bg-dark: #0e0f13;
-      --card-light: #ffffff;
-      --card-dark: #151823;
-      --text-light: #f8fafc;
-      --text-dark: #1f2937;
-      --muted: #6b7280;
-      --accent: #00b894;
-      --accent-2: #34d399;
-      --header: #11131a;
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
-      --shadow-strong: 0 20px 50px rgba(0,0,0,.18);
-      --radius: 16px;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cricket Live Scores & Updates</title>
+<style>
+  /* Basic styles for layout */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+    color: #222;
+  }
+  header, footer {
+    background: #222;
+    color: #eee;
+    text-align: center;
+    padding: 1rem;
+  }
+  .promo-banner {
+    background: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    padding: 0.5rem;
+    text-align: center;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  .card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+  }
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  .hero-poster img {
+    max-width: 100%;
+    border-radius: 12px;
+    max-height: 320px;
+    object-fit: cover;
+  }
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .muted {
+    color: #555;
+  }
+  input, button {
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.2rem 0.3rem 0.2rem 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  button.primary-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button.primary-btn:hover {
+    background: #0056b3;
+  }
+  button.toggle-btn {
+    background: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  button.toggle-btn:hover {
+    background: #ddd;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .center {
+    text-align: center;
+  }
+  .mt-10 {
+    margin-top: 10px;
+  }
+  .mt-20 {
+    margin-top: 20px;
+  }
+  .grid {
+    display: grid;
+    gap: 1rem;
+  }
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .team-logos img {
+    height: 50px;
+    margin: 0 8px 8px 0;
+    vertical-align: middle;
+  }
+  iframe {
+    border: none;
+    border-radius: 12px;
+  }
+  .ticker {
+    overflow: hidden;
+    white-space: nowrap;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 0.5rem;
+    background: #f0f0f0;
+  }
+  .track {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ticker-scroll 20s linear infinite;
+  }
+  @keyframes ticker-scroll {
+    0% {
+      transform: translateX(0%);
     }
-
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      background: var(--bg-light);
-      color: var(--text-dark);
-      scroll-behavior: smooth;
+    100% {
+      transform: translateX(-100%);
     }
-
-    /* Auto dark mode based on system preference, overridable by toggle */
-    @media (prefers-color-scheme: dark) {
-      body:not(.force-light) {
-        background: var(--bg-dark);
-        color: var(--text-light);
-      }
-    }
-
-    .dark-mode, body.force-dark { background: var(--bg-dark); color: var(--text-light); }
-
-    .container {
-      max-width: 1100px;
-      margin: 100px auto 40px;
-      padding: 0 16px;
-    }
-
-    /* Sticky Header */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      background: linear-gradient(180deg, var(--header) 0%, #141726 100%);
-      color: #fff;
-      box-shadow: var(--shadow);
-      backdrop-filter: saturate(150%) blur(8px);
-    }
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 18px 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .brand {
-      display: flex; align-items: center; gap: 12px;
-    }
-    .brand h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: .3px;
-      margin: 0;
-    }
-    .brand small { color: #cbd5e1; display:block; margin-top: 2px; font-size:.8rem }
-    .spacer { flex: 1; }
-
-    .toggle-btn, .primary-btn {
-      border: none; cursor: pointer;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-weight: 600;
-      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
-    }
-    .toggle-btn {
-      background: #2a2f44; color: #fff;
-    }
-    .toggle-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
-
-    /* Gradient CTA */
-    .primary-btn {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
-      color: white; text-decoration: none; display:inline-flex; align-items:center; gap:10px;
-      box-shadow: 0 10px 25px rgba(0, 184, 148, .35);
-    }
-    .primary-btn:hover { transform: translateY(-2px) scale(1.01); box-shadow: var(--shadow-strong); }
-
-    /* Promo bar */
-    .promo-banner {
-      text-align: center; color: #e2e8f0;
-      font-size: .95rem; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,.06);
-      background: rgba(255,255,255,.02);
-    }
-
-    /* Card */
-    .card {
-      background: var(--card-light);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
-      transition: transform .2s ease, box-shadow .2s ease, background .3s ease;
-    }
-    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-strong); }
-    body.dark-mode .card, body.force-dark .card, @media (prefers-color-scheme: dark) {
-      .card { background: var(--card-dark); }
-    }
-
-    h2.section-title {
-      font-family: 'Poppins', sans-serif;
-      margin: 0 0 14px;
-      font-size: 1.4rem;
-    }
-    p.muted { color: var(--muted); margin-top: 6px; }
-
-    .grid {
-      display: grid;
-      gap: 20px;
-    }
-    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
-    @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 640px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
-
-    .hero {
-      display:grid; gap: 20px; align-items: center;
-      grid-template-columns: 1.2fr .8fr;
-    }
-    @media (max-width: 880px){ .hero { grid-template-columns: 1fr; } }
-
-    .hero-poster {
-      border-radius: var(--radius);
-      overflow: hidden;
-      aspect-ratio: 16/9;
-      box-shadow: var(--shadow);
-    }
-    .hero-poster img { width:100%; height:100%; object-fit: cover; display:block; }
-
-    /* Section images */
-    .section-img {
-      width: 100%; height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 10px;
-    }
-
-    /* Team logos grid */
-    .team-logos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      gap: 16px; justify-items: center; align-items: center;
-    }
-    .team-logos img {
-      width: 64px; background: #fff; padding: 6px;
-      border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,.08);
-      transition: transform .2s ease, filter .2s ease;
-    }
-    .team-logos img:hover { transform: scale(1.08); filter: saturate(120%); }
-    body.dark-mode .team-logos img, body.force-dark .team-logos img { background: #0f1220; }
-
-    /* Live Scoreboard + Ticker */
-    .scoreboard iframe { border: 0; border-radius: 12px; box-shadow: var(--shadow); }
-    .ticker {
-      overflow: hidden; white-space: nowrap; border-radius: 999px; padding: 10px 12px; margin-top: 12px;
-      background: linear-gradient(90deg, rgba(0,184,148,.15), rgba(52,211,153,.15));
-    }
-    .ticker .track {
-      display: inline-block;
-      animation: scroll 28s linear infinite;
-      padding-right: 50vw;
-    }
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* Telegram icon */
-    .telegram-icon {
-      display:inline-flex; width:60px; height:60px; border-radius: 50%;
-      overflow:hidden; background: #0088cc; align-items:center; justify-content:center;
-      box-shadow: var(--shadow); transition: transform .2s ease;
-    }
-    .telegram-icon:hover { transform: translateY(-2px) scale(1.03); }
-
-    /* Inputs / small UI */
-    .row { display:flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-    .row input, .row select {
-      padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 10px; background: transparent; color: inherit;
-    }
-    body.dark-mode .row input, body.force-dark .row input { border-color: #334155; }
-
-    /* Footer */
-    footer {
-      background: #11131a; color:#cbd5e1; text-align:center; padding: 24px 12px; font-size:.95rem;
-      margin-top: 40px;
-    }
-
-    /* Small helpers */
-    .fade-in { animation: fade 0.6s ease both; }
-    @keyframes fade { from { opacity: 0; transform: translateY(6px);} to { opacity:1; transform: translateY(0);} }
-    .center { text-align: center; }
-    .mt-10 { margin-top: 10px; }
-    .mt-20 { margin-top: 20px; }
-  </style>
+  }
+  .telegram-icon img {
+    filter: invert(20%) sepia(96%) saturate(5724%) hue-rotate(186deg) brightness(95%) contrast(103%);
+    transition: filter 0.3s ease;
+  }
+  .telegram-icon:hover img {
+    filter: invert(45%) sepia(68%) saturate(5271%) hue-rotate(165deg) brightness(105%) contrast(105%);
+  }
+</style>
 </head>
 <body>
-
-  <header>
-    <div class="header-inner">
-      <div class="brand">
-        <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/The_Hundred_logo.svg" alt="Logo" width="34" height="34" loading="lazy" />
-        <div>
-          <h1>Phoenix Live Link</h1>
-          <small>Cricket Central Hub</small>
-        </div>
-      </div>
-      <div class="spacer"></div>
-
-      <a href="https://alpha-binge.pages.dev/" target="_blank" class="primary-btn" aria-label="Watch live matches">
-        🟢 Watch Live Matches
-      </a>
-      <button class="toggle-btn" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+  <header style="max-width: 1100px; margin: 0 auto; padding: 1rem; display: flex; align-items: center; justify-content: space-between; background: #222; color: #eee; position: relative;">
+  <div style="display: flex; align-items: center; gap: 1rem;">
+    <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/The_Hundred_logo.svg" alt="Logo" width="34" height="34" />
+    <div>
+      <h1 style="margin: 0; font-size: 1.2rem;">Phoenix Live Link</h1>
+      <small style="color: #aaa; display: block;">Cricket Central Hub</small>
     </div>
-    <div class="promo-banner">
-      🏏 Catch All The Cricket Action: The Hundred, Asia Cup & Test Matches!
+  </div>
+
+  <div id="watchLiveDropdown" style="position: relative;">
+    <button id="watchLiveBtn" aria-label="Watch live matches" style="cursor: pointer; border-radius: 999px; padding: 0.5rem 1rem; background: #007bff; color: white; border: none; font-weight: bold; font-size: 1rem; position: relative; user-select: none;">
+      🟢 Watch Live
+      <span class="live-badge" style="background: red; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 12px; position: absolute; top: -6px; right: -6px; user-select: none;">LIVE</span>
+    </button>
+    <div id="watchLiveLinks" style="display: none; position: absolute; right: 0; background: white; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 10000; min-width: 260px;">
+      <a href="https://binge-sports.pages.dev/ch?id=ten-1" target="_blank" rel="noopener noreferrer" style="display: block; padding: 10px 16px; color: #007bff; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;">Sony Sports 1 (Android & iOS Only)</a>
+      <a href="https://binge-sports.pages.dev/ch?id=ten-3" target="_blank" rel="noopener noreferrer" style="display: block; padding: 10px 16px; color: #007bff; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;">Sony Sports 3 Hindi (Android & iOS Only)</a>
+      <a href="https://binge-sports.pages.dev/ch?id=ten-5" target="_blank" rel="noopener noreferrer" style="display: block; padding: 10px 16px; color: #007bff; text-decoration: none; font-weight: 600;">Sony Sports 5 (Android & Windows Only)</a>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main class="container">
-    <!-- HERO -->
-    <section class="card hero fade-in">
-      <div>
-        <h2 class="section-title">Live Scores, Links & Updates</h2>
-        <p class="muted">Everything cricket in one place — live scoreboard, match countdown, score ticker, news and more.</p>
 
-        <!-- Countdown + Calendar -->
-        <div class="card mt-20">
-          <h3 style="margin:0 0 10px">⏳ Next Match Countdown</h3>
-          <div class="row">
-            <input type="text" id="matchTitle" placeholder="Match title (e.g., IND vs PAK – Asia Cup)" style="flex:1; min-width:240px">
-            <input type="datetime-local" id="matchDateTime" style="min-width:220px">
-            <button class="primary-btn" id="saveMatchBtn">Save</button>
-            <a id="gcalBtn" class="toggle-btn" target="_blank" rel="noopener">Add to Google Calendar</a>
-          </div>
-          <div id="countdown" class="center mt-10" style="font-size:1.2rem; font-weight:600;"></div>
+
+
+
+<script>
+  const watchBtn = document.getElementById('watchLiveBtn');
+  const watchLinks = document.getElementById('watchLiveLinks');
+
+  watchBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent event bubbling to window
+    watchLinks.style.display = watchLinks.style.display === 'block' ? 'none' : 'block';
+  });
+
+  window.addEventListener('click', () => {
+    watchLinks.style.display = 'none';
+  });
+</script>
+
+
+
+
+  <!-- SCOREBOARD + TICKER -->
+  <section class="grid grid-2 mt-20">
+    <div class="card scoreboard">
+      <h2 class="section-title">Live Scoreboard</h2>
+      <iframe src="https://widget.crictimes.org/" width="100%" height="320" loading="lazy"></iframe>
+      <div class="ticker mt-10" title="Scrolls automatically">
+        <div class="track" id="tickerTrack">
+          <!-- Ticker items will be inserted here by JS -->
         </div>
       </div>
-
-      <div class="hero-poster">
-        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1600&auto=format&fit=crop" alt="Cricket stadium" loading="lazy">
+      <div class="row mt-10">
+        <input id="tickerInput" placeholder="Add a score update (e.g., IND 178/4 in 17.3)" style="flex:1; min-width:240px" />
+        <button class="toggle-btn" id="addTickerBtn">Add</button>
+        <button class="toggle-btn" id="clearTickerBtn">Clear</button>
       </div>
-    </section>
-
-    <!-- AD -->
-    <section class="mt-20">
-      <div class="card center">
-        <img src="https://via.placeholder.com/970x90.png?text=Advertise+Here" alt="Ad Banner" style="max-width:100%; border-radius:12px" loading="lazy"/>
+    </div>
+    <!-- POLL -->
+    <div class="card">
+      <h2 class="section-title">??? Fan Poll</h2>
+      <p class="muted" id="pollQuestion">Who will win todayӳ match?</p>
+      <div id="pollOptions" class="grid grid-2"></div>
+      <div class="center mt-10">
+        <button class="toggle-btn" id="resetPollBtn">Reset Poll</button>
       </div>
-    </section>
+      <p class="muted mt-10 center">Votes are saved on your device (no login needed).</p>
+    </div>
+  </section>
+  <!-- TOURNAMENTS -->
+  <section class="grid grid-3 mt-20">
+    <div class="card">
+      <img class="section-img" src="https://upload.wikimedia.org/wikipedia/en/f/fd/The_Hundred_logo.svg" alt="The Hundred" loading="lazy" style="max-height:100px; display:block; margin:0 auto 10px" />
+      <h3 class="center">The Hundred 2025</h3>
+      <p class="muted center">Fast-paced cricket נbold teams, quickfire innings, thrilling finishes!</p>
+    </div>
+    <div class="card">
+      <img class="section-img" src="https://upload.wikimedia.org/wikipedia/en/f/fb/ACC_Asia_Cup_Logo.png" alt="Asia Cup" loading="lazy" style="max-height:100px; display:block; margin:0 auto 10px" />
+      <h3 class="center">Asia Cup 2025</h3>
+      <p class="muted center">T20I clashes featuring Asia's finest teams. DonӴ miss the heat!</p>
+    </div>
+    <div class="card">
+      <img class="section-img" src="https://upload.wikimedia.org/wikipedia/en/3/3c/Test_cricket_logo.png" alt="Test Cricket" loading="lazy" style="max-height:100px; display:block; margin:0 auto 10px" />
+      <h3 class="center">Test Match Cricket</h3>
+      <p class="muted center">The purest format נstrategy, grit and epic contests across five days.</p>
+    </div>
+  </section>
+  <!-- HUNDRED TEAM LOGOS -->
+  <section class="card mt-20">
+    <h2 class="section-title">?? The Hundred Teams</h2>
+    <div class="team-logos">
+      <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Birmingham_Phoenix.png" title="Birmingham Phoenix" alt="Birmingham Phoenix" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/en/f/f2/Northern_Superchargers.png" title="Northern Superchargers" alt="Northern Superchargers" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/en/0/09/London_Spirit.png" title="London Spirit" alt="London Spirit" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Manchester_Originals.png" title="Manchester Originals" alt="Manchester Originals" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/en/5/57/Oval_Invincibles.png" title="Oval Invincibles" alt="Oval Invincibles" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/en/a/a0/Southern_Brave.png" title="Southern Brave" alt="Southern Brave" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/en/b/b0/Trent_Rockets.png" title="Trent Rockets" alt="Trent Rockets" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Welsh_Fire.png" title="Welsh Fire" alt="Welsh Fire" loading="lazy" />
+    </div>
+   
 
-    <!-- SCOREBOARD + TICKER -->
-    <section class="grid grid-2 mt-20">
-      <div class="card scoreboard">
-        <h2 class="section-title">Live Scoreboard</h2>
-        <iframe src="https://widget.crictimes.org/" width="100%" height="320" loading="lazy"></iframe>
 
-        <div class="ticker mt-10" title="Scrolls automatically">
-          <div class="track" id="tickerTrack">
-            <!-- Ticker items duplicated in JS for infinite scroll -->
-          </div>
-        </div>
-        <div class="row mt-10">
-          <input id="tickerInput" placeholder="Add a score update (e.g., IND 178/4 in 17.3)" style="flex:1; min-width:240px">
-          <button class="toggle-btn" id="addTickerBtn">Add</button>
-          <button class="toggle-btn" id="clearTickerBtn">Clear</button>
-        </div>
-      </div>
 
-      <!-- POLL -->
-      <div class="card">
-        <h2 class="section-title">🗳️ Fan Poll</h2>
-        <p class="muted" id="pollQuestion">Who will win today’s match?</p>
-        <div id="pollOptions" class="grid grid-2"></div>
-        <div class="center mt-10">
-          <button class="toggle-btn" id="resetPollBtn">Reset Poll</button>
-        </div>
-        <p class="muted mt-10 center">Votes are saved on your device (no login needed).</p>
-      </div>
-    </section>
 
-    <!-- TOURNAMENTS -->
-    <section class="grid grid-3 mt-20">
-      <div class="card fade-in">
-        <img class="section-img" src="https://upload.wikimedia.org/wikipedia/en/f/fd/The_Hundred_logo.svg" alt="The Hundred" loading="lazy">
-        <h3 class="center">The Hundred 2025</h3>
-        <p class="muted center">Fast-paced cricket — bold teams, quickfire innings, thrilling finishes!</p>
-      </div>
 
-      <div class="card fade-in" style="animation-delay:.05s">
-        <img class="section-img" src="https://upload.wikimedia.org/wikipedia/en/f/fb/ACC_Asia_Cup_Logo.png" alt="Asia Cup" loading="lazy">
-        <h3 class="center">Asia Cup 2025</h3>
-        <p class="muted center">T20I clashes featuring Asia's finest teams. Don’t miss the heat!</p>
-      </div>
 
-      <div class="card fade-in" style="animation-delay:.1s">
-        <img class="section-img" src="https://upload.wikimedia.org/wikipedia/en/3/3c/Test_cricket_logo.png" alt="Test Cricket" loading="lazy">
-        <h3 class="center">Test Match Cricket</h3>
-        <p class="muted center">The purest format — strategy, grit and epic contests across five days.</p>
-      </div>
-    </section>
+</div>
 
-    <!-- HUNDRED TEAM LOGOS -->
-    <section class="card mt-20">
-      <h2 class="section-title">💯 The Hundred Teams</h2>
-      <div class="team-logos">
-        <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Birmingham_Phoenix.png" title="Birmingham Phoenix" alt="Birmingham Phoenix" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/en/f/f2/Northern_Superchargers.png" title="Northern Superchargers" alt="Northern Superchargers" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/en/0/09/London_Spirit.png" title="London Spirit" alt="London Spirit" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Manchester_Originals.png" title="Manchester Originals" alt="Manchester Originals" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/en/5/57/Oval_Invincibles.png" title="Oval Invincibles" alt="Oval Invincibles" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/en/a/a0/Southern_Brave.png" title="Southern Brave" alt="Southern Brave" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/en/b/b0/Trent_Rockets.png" title="Trent Rockets" alt="Trent Rockets" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Welsh_Fire.png" title="Welsh Fire" alt="Welsh Fire" loading="lazy">
-      </div>
-    </section>
 
-    <!-- NEWS (FREE + SEARCHABLE) -->
+</div>
+
+
+    <!-- ADDING TELEGRAM CHANNEL --->
+    <section class="card mt-20 center">
+  <h2 class="section-title">📲 Join Us on Telegram</h2>
+  <p class="muted">Get instant updates, match alerts, scorecards and more!</p>
+  <a href="https://t.me/CRICKETNWWS" target="_blank" class="telegram-icon" style="display: inline-block; margin-top: 10px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" width="48" height="48" />
+  </a>
+  <p style="margin-top: 10px;"><a href="https://t.me/YourChannelUsername" target="_blank" class="primary-btn">Join Telegram Channel</a></p>
+</section>
+
+  </section>
+   <!-- NEWS (FREE + SEARCHABLE) -->
     <section class="card mt-20">
       <h2 class="section-title">📰 Latest Cricket News</h2>
       <div class="row">
@@ -357,38 +292,8 @@
       <div id="newsList" class="grid mt-20"></div>
       <p class="muted mt-10">Tip: paste any cricket RSS URL and click “Load News”. You can search instantly.</p>
     </section>
-
-    <!-- INTERNATIONAL TEAMS (flags kept for now; can swap to logos later) -->
-    <section class="card mt-20">
-      <h2 class="section-title">🏏 International Teams</h2>
-      <div class="team-logos">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" title="India" alt="India" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg" title="Pakistan" alt="Pakistan" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg" title="Australia" alt="Australia" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg" title="England" alt="England" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg" title="New Zealand" alt="New Zealand" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg" title="South Africa" alt="South Africa" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg" title="Bangladesh" alt="Bangladesh" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg" title="Sri Lanka" alt="Sri Lanka" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_the_West_Indies_Cricket_Team.svg" title="West Indies" alt="West Indies" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Afghanistan.svg" title="Afghanistan" alt="Afghanistan" loading="lazy">
-      </div>
-    </section>
-
-    <!-- TELEGRAM -->
-    <section class="card center mt-20">
-      <h3>Join Us for Updates!</h3>
-      <a href="https://t.me/cricketophile" target="_blank" class="telegram-icon" aria-label="Telegram">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon.svg" alt="Telegram" width="36" height="36" loading="lazy">
-      </a>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 Phoenix Live Link | All Rights Reserved
-  </footer>
-
-  <!-- THEME + PREFERENCES -->
+    
+    <!-- THEME + PREFERENCES -->
   <script>
     (function themeInit(){
       const stored = localStorage.getItem('theme'); // 'dark' | 'light' | null
@@ -406,141 +311,9 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
   </script>
-
-  <!-- COUNTDOWN + GOOGLE CAL -->
-  <script>
-    const titleEl = document.getElementById('matchTitle');
-    const dtEl = document.getElementById('matchDateTime');
-    const countdownEl = document.getElementById('countdown');
-    const gcalBtn = document.getElementById('gcalBtn');
-
-    // Load saved values
-    const saved = JSON.parse(localStorage.getItem('nextMatch') || '{}');
-    if (saved.title) titleEl.value = saved.title;
-    if (saved.datetime) dtEl.value = saved.datetime;
-
-    function updateGCalLink(){
-      const t = titleEl.value || 'Cricket Match';
-      const dt = dtEl.value ? new Date(dtEl.value) : null;
-      if (!dt) { gcalBtn.removeAttribute('href'); return; }
-      const start = dt.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z/,'Z');
-      const end = new Date(dt.getTime() + 2*60*60*1000).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z/,'Z'); // +2h default
-      const url = new URL('https://calendar.google.com/calendar/render');
-      url.searchParams.set('action', 'TEMPLATE');
-      url.searchParams.set('text', t);
-      url.searchParams.set('dates', `${start}/${end}`);
-      url.searchParams.set('details', 'Added from Phoenix Live Link');
-      gcalBtn.href = url.toString();
-    }
-
-    function renderCountdown(){
-      const dtVal = dtEl.value;
-      if (!dtVal) { countdownEl.textContent = 'Set match date & time to start countdown.'; return; }
-      const now = new Date();
-      const target = new Date(dtVal);
-      const diff = target - now;
-      if (diff <= 0) { countdownEl.textContent = 'Live now or finished!'; return; }
-      const d = Math.floor(diff/86400000);
-      const h = Math.floor((diff%86400000)/3600000);
-      const m = Math.floor((diff%3600000)/60000);
-      const s = Math.floor((diff%60000)/1000);
-      countdownEl.textContent = `Starts in ${d}d ${h}h ${m}m ${s}s`;
-    }
-
-    document.getElementById('saveMatchBtn').addEventListener('click', () => {
-      const data = { title: titleEl.value, datetime: dtEl.value };
-      localStorage.setItem('nextMatch', JSON.stringify(data));
-      updateGCalLink();
-      renderCountdown();
-    });
-
-    updateGCalLink();
-    renderCountdown();
-    setInterval(renderCountdown, 1000);
-  </script>
-
-  <!-- TICKER -->
-  <script>
-    const tickerTrack = document.getElementById('tickerTrack');
-    const tickerInput = document.getElementById('tickerInput');
-    const addTickerBtn = document.getElementById('addTickerBtn');
-    const clearTickerBtn = document.getElementById('clearTickerBtn');
-
-    function getTickerItems(){
-      return JSON.parse(localStorage.getItem('tickerItems') || '[]');
-    }
-    function setTickerItems(items){
-      localStorage.setItem('tickerItems', JSON.stringify(items));
-    }
-    function renderTicker(){
-      const items = getTickerItems();
-      if (items.length === 0) {
-        tickerTrack.innerHTML = `<span style="padding-right:40px">Welcome to Phoenix Live Link</span>
-          <span style="padding-right:40px">Live scores updating…</span>
-          <span style="padding-right:40px">Set your next match countdown above</span>`;
-        return;
-      }
-      const line = items.map(t => `<span style="padding-right:40px">${t}</span>`).join('');
-      // duplicate to allow seamless loop
-      tickerTrack.innerHTML = line + line;
-    }
-
-    addTickerBtn.addEventListener('click', () => {
-      const val = tickerInput.value.trim();
-      if (!val) return;
-      const items = getTickerItems(); items.push(val); setTickerItems(items);
-      tickerInput.value = ''; renderTicker();
-    });
-    clearTickerBtn.addEventListener('click', () => { setTickerItems([]); renderTicker(); });
-
-    renderTicker();
-  </script>
-
-  <!-- POLL / VOTING (localStorage) -->
-  <script>
-    const pollQuestion = document.getElementById('pollQuestion');
-    const pollOptionsEl = document.getElementById('pollOptions');
-    const resetPollBtn = document.getElementById('resetPollBtn');
-
-    // Configure poll here:
-    const POLL_ID = 'poll_today_match_v1';
-    const POLL = {
-      question: 'Who will win today’s match?',
-      options: ['Team A', 'Team B', 'Tie/No Result']
-    };
-
-    function loadPoll(){
-      pollQuestion.textContent = POLL.question;
-      pollOptionsEl.innerHTML = '';
-      const saved = JSON.parse(localStorage.getItem(POLL_ID) || '{}'); // { votes: {option: count}, myVote: 'Team A' }
-      const votes = saved.votes || {};
-      for (const opt of POLL.options) {
-        const count = votes[opt] || 0;
-        const btn = document.createElement('button');
-        btn.className = 'primary-btn';
-        btn.style.width = '100%';
-        btn.textContent = `${opt} — ${count} vote${count!==1?'s':''}`;
-        if (saved.myVote === opt) btn.style.opacity = .85;
-        btn.addEventListener('click', () => {
-          const data = JSON.parse(localStorage.getItem(POLL_ID) || '{"votes":{}}');
-          data.votes = data.votes || {};
-          data.votes[opt] = (data.votes[opt] || 0) + 1;
-          data.myVote = opt;
-          localStorage.setItem(POLL_ID, JSON.stringify(data));
-          loadPoll();
-        });
-        pollOptionsEl.appendChild(btn);
-      }
-    }
-
-    resetPollBtn.addEventListener('click', () => {
-      localStorage.removeItem(POLL_ID);
-      loadPoll();
-    });
-
-    loadPoll();
-  </script>
-
+  
+  
+  
   <!-- RSS NEWS (FREE via rss2json.com) -->
   <script>
     const rssUrlInput = document.getElementById('rssUrl');
@@ -609,29 +382,27 @@
     rssUrlInput.value = getRssUrl();
     loadNews();
   </script>
+  
+  <!-- INTERNATIONAL TEAMS (flags kept for now; can swap to logos later) -->
+  <section class="card mt-20">
+    <h2 class="section-title">?? International Teams</h2>
+    <div class="team-logos">
+      <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" title="India" alt="India" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg" title="Pakistan" alt="Pakistan" loading="lazy"
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg" title="Pakistan" alt="Pakistan" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Australia.svg" title="Australia" alt="Australia" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Flag_of_England.svg" title="England" alt="England" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_South_Africa.svg" title="South Africa" alt="South Africa" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Flag_of_New_Zealand.svg" title="New Zealand" alt="New Zealand" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Flag_of_Sri_Lanka.svg" title="Sri Lanka" alt="Sri Lanka" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Bangladesh.svg" title="Bangladesh" alt="Bangladesh" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Afghanistan.svg" title="Afghanistan" alt="Afghanistan" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_West_Indies.svg" title="West Indies" alt="West Indies" loading="lazy" />
+    </div>
+  </section>
+</main>
 
-  <!-- Live Chat (Tawk) -->
-  <script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function () {
-      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/65bd45a98d261e1b5f643dbb/1hm98eqk8';
-      s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
-    })();
-  </script>
+<footer>
+  <p>&copy; 2025 Cricket Live Hub. All rights reserved.</p>
+</footer>
 
-  <!-- Optional: Google Analytics (replace G-XXXXXXX) -->
-  <!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');
-  </script>
-  -->
-</body>
-</html>
